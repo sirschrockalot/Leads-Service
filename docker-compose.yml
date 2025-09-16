@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  leads-service:
+    build: .
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongo:27017/dealcycle
+      - PORT=3002
+      - JWT_SECRET=leads-service-jwt-secret-development
+      - JWT_EXPIRES_IN=24h
+      - CORS_ORIGIN=http://localhost:3000
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    networks:
+      - leads-network
+
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+    networks:
+      - leads-network
+
+volumes:
+  mongo_data:
+
+networks:
+  leads-network:
+    driver: bridge
