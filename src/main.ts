@@ -5,6 +5,10 @@ import { AppModule } from './app.module';
 import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
+import * as dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -39,7 +43,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  const port = process.env.PORT || 3002;
+  const port = process.env.PORT || 3008;
   await app.listen(port);
   
   console.log(`🚀 Leads Service running on port ${port}`);

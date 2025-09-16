@@ -10,11 +10,11 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: process.env.NODE_ENV === 'production' 
-        ? '.env.production' 
+      envFilePath: process.env.NODE_ENV === 'production'
+        ? '.env.production'
         : process.env.NODE_ENV === 'staging'
         ? '.env.staging'
-        : 'env.development',
+        : '.env.development',
     }),
     MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost:27017/dealcycle'),
     DatabaseModule,

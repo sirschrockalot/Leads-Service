@@ -15,9 +15,9 @@ if ! command -v npm &> /dev/null; then
 fi
 
 # Check if .env file exists
-if [ ! -f "env.development" ]; then
-    echo "⚠️  env.development file not found. Creating from example..."
-    cp .env.example env.development
+if [ ! -f ".env.development" ]; then
+    echo "⚠️  .env.development file not found. Creating from example..."
+    cp .env.example .env.development
 fi
 
 # Install dependencies
@@ -29,8 +29,8 @@ echo "🔨 Building application..."
 npm run build
 
 # Start the service
-echo "🌟 Starting Leads Service on port 3002..."
-echo "📚 API Documentation: http://localhost:3002/api/docs"
-echo "🔍 Health Check: http://localhost:3002/api/v1/health"
+echo "🌟 Starting Leads Service on port 3008..."
+echo "📚 API Documentation: http://localhost:3008/api/docs"
+echo "🔍 Health Check: http://localhost:3008/api/v1/health"
 
 npm start

@@ -26,7 +26,7 @@ exports.AppModule = AppModule = __decorate([
                     ? '.env.production'
                     : process.env.NODE_ENV === 'staging'
                         ? '.env.staging'
-                        : 'env.development',
+                        : '.env.development',
             }),
             mongoose_1.MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost:27017/dealcycle'),
             database_module_1.DatabaseModule,
