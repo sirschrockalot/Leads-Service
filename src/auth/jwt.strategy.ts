@@ -18,10 +18,14 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException('Invalid token payload');
     }
     
+    // Support both auth-service format (userId, role) and legacy format (sub, roles)
     return {
-      userId: payload.sub || payload.userId,
+      userId: payload.userId || payload.sub,
       email: payload.email,
-      roles: payload.roles || [],
+      role: payload.role || (payload.roles && payload.roles[0]) || 'user',
+      roles: payload.roles || (payload.role ? [payload.role] : []),
+      tenantId: payload.tenantId,
+      sessionId: payload.sessionId,
     };
   }
 }
